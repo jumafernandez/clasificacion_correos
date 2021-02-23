@@ -4,4 +4,4 @@ Notebooks del Proyecto de Investigación "Clasificación Automática de Correos 
 
 Vigencia: 2020-2022.
 
-Directorio utilizado para alojar las notebooks que serán presentadas en la [jcc](https://jcc.info.unlp.edu.ar/en/)
+Directorio utilizado para alojar las notebooks que serán presentadas en la [JCC](https://jcc.info.unlp.edu.ar/) del año 2021.
