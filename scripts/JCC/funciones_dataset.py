@@ -41,13 +41,15 @@ def cargar_dataset(URL_data, file_train, file_test, nombre_clase, class_labels, 
   '''
   import pandas as pd
   import numpy as np
+  import warnings
+  warnings.filterwarnings("ignore")
 
   # Genero el enlace completo
   URL_file_train = URL_data + file_train
   URL_file_test = URL_data + file_test
   
   # Me traigo los archivos de train y test
-  if origen_ds == 'WEB':  
+  if origen_ds == 'COLAB':  
     import wget
     wget.download(URL_file_train)
     wget.download(URL_file_test)
