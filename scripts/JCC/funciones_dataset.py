@@ -74,23 +74,31 @@ def cargar_dataset(URL_data, file_train, file_test, nombre_clase, class_labels, 
   df_train.clase[df_train[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
   df_test.clase[df_test[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
 
-  print("El conjunto de entrenamiento tiene la dimensión: " + str(df_train.shape))
+  print("\nEl conjunto de entrenamiento tiene la dimensión: " + str(df_train.shape))
   print("El conjunto de testeo tiene la dimensión: " + str(df_test.shape))
 
-  return df_train, df_test
+  return df_train, df_test, etiquetas_clases
 
 
-def consolidar_df(df, features_vec, atributo_consulta, atributo_clase, features_estaticas=True):
+def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase):
   '''
   Función para unir features dinámicas a las estáticas y separar en x e y
   '''
   import pandas as pd
   
-  if features_estaticas:
-    # Separo en x e y -train-
-    y = df[atributo_clase].to_numpy()
-    x = pd.concat([df.drop([atributo_consulta, atributo_clase], axis=1), features_vec], axis=1)
-  else:
-    y = df[atributo_clase].to_numpy()
-    x = df[atributo_consulta].to_numpy()
+  # Separo en x e y -train-
+  y = df[atributo_clase].to_numpy()
+  x = pd.concat([df.drop([atributo_consulta, atributo_clase], axis=1), features_dinamicas_vec], axis=1)
+  
   return x, y
+
+  
+def add_clase(array, clase):
+  '''
+  Creo esta función para agregar la etiqueta Otras consultas
+  '''
+  import numpy as np
+  array_nuevo = np.append(array, clase)
+  return array_nuevo
+
+  

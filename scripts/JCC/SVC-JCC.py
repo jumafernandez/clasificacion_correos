@@ -4,6 +4,7 @@ Created on Wed Mar 24 22:59:00 2021
 
 @author: unlu
 """
+
 import pandas as pd
 from funciones_dataset import cargar_dataset, get_clases
 from funciones_preprocesamiento import preprocesar_correos
@@ -11,8 +12,12 @@ from funciones_clasificacion_texto import gridsearch_por_estrategia_representaci
 import warnings
 warnings.filterwarnings("ignore")
 
+# Defino la cantidad de clases con las que se va a trabajar
+CANTIDAD_CLASES = 4
+
 # Cargo el dataset
-df_train, df_test = cargar_dataset('https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/', 'correos-train-80.csv', 'correos-test-20.csv', 'clase', get_clases(), 4, "Otras Consultas", 'COLAB')
+etiquetas = get_clases()
+df_train, df_test, etiquetas = cargar_dataset('https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/', 'correos-train-80.csv', 'correos-test-20.csv', 'clase', etiquetas, CANTIDAD_CLASES, "Otras Consultas", 'COLAB')
 
 # Se ejecuta el preprocesamiento de correos sobre el campo Consulta de train y test
 df_train['Consulta'] = pd.Series(preprocesar_correos(df_train['Consulta']))
