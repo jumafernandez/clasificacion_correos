@@ -49,10 +49,13 @@ def cargar_dataset(URL_data, file_train, file_test, nombre_clase, class_labels, 
   URL_file_test = URL_data + file_test
   
   # Me traigo los archivos de train y test
-  if origen_ds == 'COLAB':  
-    import wget
-    wget.download(URL_file_train)
-    wget.download(URL_file_test)
+  if origen_ds == 'COLAB':
+    # Verificamos que los archivos no hayan sido descargados antes
+    from os import path
+    if not(path.exists(file_train)):
+      import wget
+      wget.download(URL_file_train)
+      wget.download(URL_file_test)
   else:
     file_train = URL_file_train
     file_test = URL_file_test

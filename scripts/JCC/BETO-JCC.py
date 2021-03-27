@@ -167,6 +167,6 @@ results_test = pd.DataFrame([dict_test])
 
 from datetime import datetime
 now = datetime.now()
-nombre_results_test = 'resultados/results_test.csv'+ str(now)
+nombre_results_test = 'resultados/results_test-'+ str(now) + '.csv'
 results_test.to_csv(nombre_results_test, mode='w')
 print(results_test)
