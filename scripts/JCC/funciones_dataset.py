@@ -80,7 +80,7 @@ def cargar_dataset(URL_data, file_train, file_test, nombre_clase, class_labels, 
   return df_train, df_test
 
 
-def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase, features_estaticas=True):
+def consolidar_df(df, features_vec, atributo_consulta, atributo_clase, features_estaticas=True):
   '''
   Función para unir features dinámicas a las estáticas y separar en x e y
   '''
@@ -89,7 +89,7 @@ def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase,
   if features_estaticas:
     # Separo en x e y -train-
     y = df[atributo_clase].to_numpy()
-    x = pd.concat([df.drop([atributo_consulta, atributo_clase], axis=1), features_dinamicas_vec], axis=1)
+    x = pd.concat([df.drop([atributo_consulta, atributo_clase], axis=1), features_vec], axis=1)
   else:
     y = df[atributo_clase].to_numpy()
     x = df[atributo_consulta].to_numpy()
