@@ -84,3 +84,35 @@ def preprocesar_correos(correos):
     
   return correos_limpios
 
+def get_max_length(text):
+  """
+  devuelve la cantidad máxima de tokens para las consultas que se le pasan.
+  Esta acción es importante para el padding en LSTM.
+  """
+  max_length = 0
+  for row in text:
+    if len(row.split(" ")) > max_length:
+      max_length = len(row.split(" "))
+  return max_length
+
+
+
+def create_embedding_matrix(embeddings_model, word_index, embedding_dim):
+  '''
+  Esta función crea la matriz de embeddings para el modelo en función
+  del vocabulario de consultas, omitiendo el resto de los términos
+  '''
+  import numpy as np
+
+  vocab_size = len(word_index) + 1  # Se incorpora 1 porque se reserva el 0
+  embedding_matrix = np.zeros((vocab_size, embedding_dim))
+
+  for word, idx in word_index.items():
+    try:
+      vector = embeddings_model[word]
+      if not vector is None:
+        embedding_matrix[idx] = vector
+    except:
+      pass
+
+  return embedding_matrix

@@ -35,7 +35,7 @@ def get_clases():
 
   return etiquetas_clases
 
-def cargar_dataset(URL_data, file_train, file_test, nombre_clase, class_labels, cantidad_clases, texto_otras, origen_ds):
+def cargar_dataset(URL_data, file_train, file_test, path_ds, nombre_clase, class_labels, cantidad_clases, texto_otras, origen_ds):
   '''
   Carga los train y test set y genera la reducción de clases, en caso que sea necesario
   '''
@@ -52,7 +52,8 @@ def cargar_dataset(URL_data, file_train, file_test, nombre_clase, class_labels, 
   if origen_ds == 'COLAB':
     # Verificamos que los archivos no hayan sido descargados antes
     from os import path
-    if not(path.exists(file_train)):
+    if not(path.exists(path_ds + '\\' + file_train)):
+      print('El archivo {} no se encuentra en {}, se inicia descarga.'.format(file_train, path_ds))
       import wget
       wget.download(URL_file_train)
       wget.download(URL_file_test)
