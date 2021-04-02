@@ -133,3 +133,5 @@ scripts/JCC/correos-test-20.csv
 scripts/JCC/correos-train-80.csv
 scripts/JCC/results_test.csv
 scripts/JCC/results_train.csv
+scripts/JCC/results_test_BASE_BOW.csv
+scripts/JCC/results_train_BASE_BOW.csv
