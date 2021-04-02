@@ -42,11 +42,10 @@ def representacion_documentos(textos_train, textos_test, estrategia, MAX_TKS):
   return df_representacion_correos_train, df_representacion_correos_test
 
 
-def gridsearch_por_estrategia_representacion(train, test, estrategia):
+def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, parameters):
   from funciones_dataset import consolidar_df
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
-  from sklearn.svm import SVC
   from sklearn.preprocessing import MinMaxScaler
   from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
   import pandas as pd
@@ -64,17 +63,15 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia):
   x_train_scaled = scaler.fit_transform(x_train)
   x_test_scaled = scaler.fit_transform(x_test)
 
-  # Defino los parámetros para GridSearchCV
-  parameters=[
-             {'svm__C': [0.01, 0.1, 1, 10, 100, 1000], 
-              'svm__gamma': [1, 0.1, 0.01, 0.001, 0.0001],
-              'svm__class_weight': [None, 'balanced'],
-              'svm__kernel': ['rbf', 'linear', 'poly', 'sigmoid']
-              }]
-
   # Dejo Pipeline, si bien no tiene sentido, queda por retrocompatibilidad con versión anterior
-  model_pipe = Pipeline([('svm', SVC())])
-  
+  if tecnica == 'SVM':
+    from sklearn.svm import SVC
+    model_pipe = Pipeline([(tecnica, SVC())])
+  else:
+    from xgboost import XGBClassifier
+    model_pipe = Pipeline([(tecnica, XGBClassifier())])
+
+    
   # Instancio y "entreno" el GridSearchCV
   grid_search=GridSearchCV(model_pipe, param_grid=parameters, cv=None, n_jobs=-1, verbose=3)
   grid_search.fit(x_train_scaled, y_train)
@@ -97,7 +94,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia):
 
   # Genero un diccionario con los parámetro y el acc en test
   dict_grid_test = grid_search.best_params_
-  dict_grid_test['clasificador'] = 'SVM'
+  dict_grid_test['clasificador'] = tecnica
   dict_grid_test['estrategia'] = estrategia
   dict_grid_test['accuracy'] = acc_test
   dict_grid_test['precision'] = precision_test

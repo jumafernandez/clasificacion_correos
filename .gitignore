@@ -131,3 +131,5 @@ data/00-Consultas.pst
 scripts/JCC/embeddings/SBW-vectors-300-min5.bin.gz
 scripts/JCC/correos-test-20.csv
 scripts/JCC/correos-train-80.csv
+scripts/JCC/results_test.csv
+scripts/JCC/results_train.csv

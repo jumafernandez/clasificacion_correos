@@ -21,21 +21,40 @@ etiquetas = get_clases()
 path_file = str(pathlib.Path().absolute())
 train_df, test_df, etiquetas = cargar_dataset('https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/', 'correos-train-80.csv', 'correos-test-20.csv', path_file, 'clase', etiquetas, CANTIDAD_CLASES, 'Otras Consultas', 'COLAB')
 
+# Se renombran las etiquetas
+train_df.clase = etiquetas[train_df.clase]
+test_df.clase = etiquetas[test_df.clase]
+
+# Las vuelvo a pasar a números 0-N para evitar conflictos con simpletransformers
+# Este paso está fijo para estos experimentos
+dict_clases_id = {'Otras Consultas': 0,
+                            'Ingreso a la Universidad': 1,
+                            'Boleto Universitario': 2,
+                            'Requisitos de Ingreso': 3}
+
+train_df['clase'].replace(dict_clases_id, inplace=True)
+test_df['clase'].replace(dict_clases_id, inplace=True)
+
 # Se ejecuta el preprocesamiento de correos sobre el campo Consulta de train y test
 train_df['Consulta'] = pd.Series(preprocesar_correos(train_df['Consulta']))
 test_df['Consulta'] = pd.Series(preprocesar_correos(test_df['Consulta']))
 
 # Defino una lista con los esquemas de representación
 estrategias_representacion = ['BASELINE', 'BOW', 'TFIDF', '3-4-NGRAM-CHARS', '1-2-NGRAM-WORDS']
-modelo = 'SVM'
+tecnica_aprendizaje = 'XGBoost'
 
-# Defino los parámetros para GridSearchCV
-params_svm = {'SVM__C': [0.01, 0.1, 1, 10, 100, 1000], 
-              'SVM__gamma': [1, 0.1, 0.01, 0.001, 0.0001],
-              'SVM__class_weight': [None, 'balanced'],
-              'SVM__kernel': ['rbf', 'linear', 'poly', 'sigmoid']
-              }
+# A parameter grid for XGBoost
+params_xg = {
+          'XGBoost__min_child_weight': [1, 5, 10],
+          'XGBoost__gamma': [0.5, 1, 1.5, 2, 5],
+          'XGBoost__subsample': [0.6, 0.8, 1.0],
+          'XGBoost__colsample_bytree': [0.6, 0.8, 1.0],
+          'XGBoost__max_depth': [3, 4, 5],
+          'XGBoost__eval_metric': ['merror'],
+          'XGBoost__use_label_encoder': [False]
+        }
+
 
 for estrategia in estrategias_representacion:
   # Llamo a la función que realiza el gridsearch por estrategia  
-  gridsearch_por_estrategia_representacion(train_df, test_df, estrategia, modelo, params_svm)
+  gridsearch_por_estrategia_representacion(train_df, test_df, estrategia, tecnica_aprendizaje, params_xg)
