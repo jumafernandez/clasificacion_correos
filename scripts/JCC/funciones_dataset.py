@@ -35,8 +35,6 @@ def get_clases():
 
   return etiquetas_clases
 
-etiquetas, CANTIDAD_CLASES, 'Otras Consultas', 'COLAB')
-  
 def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras):
   '''
   Carga los train y test set y genera la reducción de clases, en caso que sea necesario
