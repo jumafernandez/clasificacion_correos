@@ -6,20 +6,36 @@ Created on Sat Mar 27 02:42:57 2021
 """
 
 from funciones_dataset import get_clases, cargar_dataset
+from os import path
 import warnings
 warnings.filterwarnings("ignore")
 
 # Cantidad de clases
 CANTIDAD_CLASES = 4
 
-# Cargo el dataset
+# Constantes con los datos
+DS_DIR = 'https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/'
+TRAIN_FILE = 'correos-train-80.csv'
+TEST_FILE = 'correos-test-20.csv'
+
+# Chequeo sobre si los archivos están en el working directory
+download_files = not(path.exists(TRAIN_FILE))
+
 etiquetas = get_clases()
-train_df, test_df, etiquetas = cargar_dataset('https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/', 'correos-train-80.csv', 'correos-test-20.csv', '/home/jmfernandez/', 'clase', etiquetas, CANTIDAD_CLASES, 'Otras Consultas', 'COLAB')
+train_df, test_df, etiquetas = cargar_dataset(DS_DIR, TRAIN_FILE, TEST_FILE, download_files, 'clase', etiquetas, CANTIDAD_CLASES, 'Otras Consultas')
 
 train_df = train_df[['Consulta', 'clase']]
 train_df.columns = ['text', 'labels']
 test_df = test_df[['Consulta', 'clase']]
 test_df.columns = ['text', 'labels']
+
+# Preprocesamiento del texto
+from funciones_preprocesamiento import preprocesar_correos
+
+# Se ejecuta el preprocesamiento de correos sobre el campo Consulta de train y test
+import pandas as pd
+train_df['Consulta'] = pd.Series(preprocesar_correos(train_df['text']))
+test_df['Consulta'] = pd.Series(preprocesar_correos(test_df['text']))
 
 # Cambio los integers por las etiquetas
 train_df.labels = etiquetas[train_df.labels]
@@ -60,8 +76,9 @@ train_args = {
 
 # Creamos el ClassificationModel
 model = ClassificationModel(
-#   'bert', 'bert-base-multilingual-cased',
-   'dcc-beto', 'dccuchile/bert-base-spanish-wwm-cased',
+    model_type='bert', 
+    model_name='bert-base-multilingual-cased',
+#    model_name='dccuchile/bert-base-spanish-wwm-cased',
     num_labels=CANTIDAD_CLASES,
     use_cuda=False,
     args=train_args
@@ -93,9 +110,10 @@ dict_test['f1_score'] = f1_test
  
 # Paso el diccionario a dataframe y lo guardo en un archivo con fecha/hora
 results_test = pd.DataFrame([dict_test])
+print(results_test)
 
+# Lo guardo en un archivo
 from datetime import datetime
 now = datetime.now()
 nombre_results_test = 'resultados/results_test-'+ str(now) + '.csv'
 results_test.to_csv(nombre_results_test, mode='w')
-print(results_test)
