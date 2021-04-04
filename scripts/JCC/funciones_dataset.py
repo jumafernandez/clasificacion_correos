@@ -35,7 +35,9 @@ def get_clases():
 
   return etiquetas_clases
 
-def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras, origen_ds):
+etiquetas, CANTIDAD_CLASES, 'Otras Consultas', 'COLAB')
+  
+def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras):
   '''
   Carga los train y test set y genera la reducción de clases, en caso que sea necesario
   '''
@@ -48,15 +50,11 @@ def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, clas
   URL_file_train = URL_data + file_train
   URL_file_test = URL_data + file_test
   
-  # Me traigo los archivos de train y test
-  if origen_ds == 'COLAB':
-    # Verificamos que los archivos no hayan sido descargados antes
-    from os import path
-    if descarga:
-      print('Se inicia descarga de los datasets.'.format(file_train, file_test))
-      import wget
-      wget.download(URL_file_train)
-      wget.download(URL_file_test)
+  if descarga:
+    print('Se inicia descarga de los datasets.'.format(file_train, file_test))
+    import wget
+    wget.download(URL_file_train)
+    wget.download(URL_file_test)
   else:
     file_train = URL_file_train
     file_test = URL_file_test
