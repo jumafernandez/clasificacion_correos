@@ -52,7 +52,7 @@ def cargar_dataset(URL_data, file_train, file_test, path_ds, nombre_clase, class
   if origen_ds == 'COLAB':
     # Verificamos que los archivos no hayan sido descargados antes
     from os import path
-    if not(path.exists(path_ds + '\\' + file_train)):
+    if not(path.exists(path_ds + '/' + file_train)):
       print('El archivo {} no se encuentra en {}, se inicia descarga.'.format(file_train, path_ds))
       import wget
       wget.download(URL_file_train)
