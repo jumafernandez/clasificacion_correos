@@ -45,11 +45,11 @@ tecnica_aprendizaje = 'XGBoost'
 
 # A parameter grid for XGBoost
 params_xg = {
-          'XGBoost__min_child_weight': [1, 5, 10],
-          'XGBoost__gamma': [0.5, 1, 1.5, 2, 5],
-          'XGBoost__subsample': [0.6, 0.8, 1.0],
-          'XGBoost__colsample_bytree': [0.6, 0.8, 1.0],
-          'XGBoost__max_depth': [3, 4, 5],
+          'XGBoost__min_child_weight': [0.5, 1, 5],
+          'XGBoost__gamma': [0.2, 0.5, 1, 1.5, 2],
+          'XGBoost__subsample': [0.4, 0.6, 0.8],
+          'XGBoost__colsample_bytree': [0.4, 0.6, 0.8],
+          'XGBoost__max_depth': [4, 5, 10],
           'XGBoost__eval_metric': ['merror'],
           'XGBoost__use_label_encoder': [False]
         }

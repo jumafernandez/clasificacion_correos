@@ -105,4 +105,12 @@ def add_clase(array, clase):
   array_nuevo = np.append(array, clase)
   return array_nuevo
 
-  
+def separar_x_y_rna(df, atributo_consulta, atributo_clase):
+  '''
+  Función para separar en x e y
+  '''
+  # Separo en x e y
+  X = df[atributo_consulta]
+  y = df[atributo_clase].to_numpy()
+
+  return X, y  
