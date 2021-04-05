@@ -44,4 +44,4 @@ params_svm = {'SVM__C': [0.01, 0.1, 1, 10, 100, 1000],
 
 for estrategia in estrategias_representacion:
   # Llamo a la función que realiza el gridsearch por estrategia  
-  gridsearch_por_estrategia_representacion(train_df, test_df, estrategia, modelo, params_svm)
+  gridsearch_por_estrategia_representacion(train_df, test_df, estrategia, modelo, params_svm, 'local')

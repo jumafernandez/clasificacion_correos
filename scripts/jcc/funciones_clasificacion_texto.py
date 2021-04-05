@@ -42,7 +42,7 @@ def representacion_documentos(textos_train, textos_test, estrategia, MAX_TKS):
   return df_representacion_correos_train, df_representacion_correos_test
 
 
-def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, parameters):
+def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, parameters, results_save):
   from funciones_dataset import consolidar_df
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
@@ -104,8 +104,15 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   # Paso el diccionario a dataframe  
   results_test = pd.DataFrame([dict_grid_test])
 
-  # Los guardo
   results_test.to_csv('results_test.csv', mode='a')
+ 
+  if 'drive':
+    # Autenticación y guardado en Drive
+    import os
+    from google.colab import drive
+    drive.mount('drive')
+    os.system('results_test.csv drive/My Drive/')
+
   
   print('Estrategia de representación: {}' . format(estrategia))
   print('Parámetros: {}' . format(grid_search.best_params_))
