@@ -14,17 +14,23 @@ Created on Sat Mar 27 02:42:57 2021
 
 from funciones_dataset import get_clases, cargar_dataset
 from funciones_preprocesamiento import get_max_length
-import pathlib
+from os import path
 import warnings
 warnings.filterwarnings("ignore")
 
 # Cantidad de clases
 CANTIDAD_CLASES = 4
 
-# Cargo el dataset
+# Constantes con los datos
+DS_DIR = 'https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/'
+TRAIN_FILE = 'correos-train-80.csv'
+TEST_FILE = 'correos-test-20.csv'
+
+# Chequeo sobre si los archivos están en el working directory
+download_files = not(path.exists(TRAIN_FILE))
+
 etiquetas = get_clases()
-path_file = str(pathlib.Path().absolute())
-train_df, test_df, etiquetas = cargar_dataset('https://raw.githubusercontent.com/jumafernandez/clasificacion_correos/main/data/consolidado_jcc/', 'correos-train-80.csv', 'correos-test-20.csv', path_file, 'clase', etiquetas, CANTIDAD_CLASES, 'Otras Consultas', 'COLAB')
+train_df, test_df, etiquetas = cargar_dataset(DS_DIR, TRAIN_FILE, TEST_FILE, download_files, 'clase', etiquetas, CANTIDAD_CLASES, 'Otras Consultas')
 
 train_df = train_df[['Consulta', 'clase']]
 train_df.columns = ['sentence', 'label']
@@ -46,7 +52,7 @@ train_df['label'].replace(dict_clases_id, inplace=True)
 test_df['label'].replace(dict_clases_id, inplace=True)
 
 # Muestro salida por consola
-print('Existen {} clases: {}, que representan a {}.'.format(len(train_df.label.unique()), train_df.label.unique(), etiquetas[train_df.label.unique()]))
+print('Existen {} clases: {}.'.format(len(train_df.label.unique()), train_df.label.unique()))
 
 sentences_train = train_df['sentence'].values
 sentences_test = test_df['sentence'].values
