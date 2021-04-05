@@ -40,28 +40,30 @@ def limpiar_texto(texto): # Estrategia tomada de UNSL (https://github.com/hjthom
   return texto
 
 
-def preprocesar_correo(correo):
+def preprocesar_correo(correo, remove_stopwords):
   '''
   Se eliminan las stopwords del texto del correo
   '''
   import unicodedata
-  import nltk 
-  nltk.download('stopwords', quiet=True)
-  nltk.download('punkt', quiet=True)
-  from nltk.corpus import stopwords
 
   texto = limpiar_texto(correo) 
 
   tokens = texto.split(' ')
   tkns_limpios = [] 
-       
-  stop_words_set = set(stopwords.words('spanish')) 
+  stopwords = []
   
-  #Eliminar acentos de stopwords
-  stopwords_final = []
-  for st in list(stop_words_set):
-    stopwords_final.append(''.join(c for c in unicodedata.normalize('NFD', st) if unicodedata.category(c) != 'Mn'))        
-  stopwords = set(stopwords_final)
+  if remove_stopwords:
+    import nltk 
+    nltk.download('stopwords', quiet=True)
+    nltk.download('punkt', quiet=True)
+    from nltk.corpus import stopwords
+    stop_words_set = set(stopwords.words('spanish')) 
+  
+    #Eliminar acentos de stopwords
+    stopwords_final = []
+    for st in list(stop_words_set):
+      stopwords_final.append(''.join(c for c in unicodedata.normalize('NFD', st) if unicodedata.category(c) != 'Mn'))        
+    stopwords = set(stopwords_final)
 
   for tk in tokens: 
     if tk not in stopwords:
@@ -79,7 +81,18 @@ def preprocesar_correos(correos):
   '''
   correos_limpios = []
   for correo in correos:
-    correo_limpio = preprocesar_correo(correo)
+    correo_limpio = preprocesar_correo(correo, True)
+    correos_limpios.append(correo_limpio)
+    
+  return correos_limpios
+
+def preprocesar_correos_bert(correos):
+  '''
+  Esta función toma los correos y los va preprocesando uno a uno para devolverlos
+  '''
+  correos_limpios = []
+  for correo in correos:
+    correo_limpio = preprocesar_correo(correo, False)
     correos_limpios.append(correo_limpio)
     
   return correos_limpios

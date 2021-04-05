@@ -30,12 +30,13 @@ test_df = test_df[['Consulta', 'clase']]
 test_df.columns = ['text', 'labels']
 
 # Preprocesamiento del texto
-from funciones_preprocesamiento import preprocesar_correos
+from funciones_preprocesamiento import preprocesar_correos_bert
 
 # Se ejecuta el preprocesamiento de correos sobre el campo Consulta de train y test
+# En caso de Bert es solo normalización sin eliminar palabras vacías
 import pandas as pd
-train_df['Consulta'] = pd.Series(preprocesar_correos(train_df['text']))
-test_df['Consulta'] = pd.Series(preprocesar_correos(test_df['text']))
+train_df['Consulta'] = pd.Series(preprocesar_correos_bert(train_df['text']))
+test_df['Consulta'] = pd.Series(preprocesar_correos_bert(test_df['text']))
 
 # Cambio los integers por las etiquetas
 train_df.labels = etiquetas[train_df.labels]
