@@ -17,7 +17,7 @@ Vigencia: 2020-2022.
 
 __Potenciales temas para Tesinas de grado (2021):__
 - Estrategias semi-supervisadas de etiquetado de documentos.
-- Impacto del Preprocesamiento y corrección de términos mediante utilización de diccionarios en las técnicas de representación de documento basadas en modelado de lenguaje.
+- Impacto del Preprocesamiento y corrección de términos mediante utilización de diccionarios en las técnicas de representación basadas en modelado de lenguaje.
 - _Question-Answering_ de correos electrónicos utilizando mecanismos basados en atención (BERT).
 - Impacto de las entrategias de representación de documentos en el agrupamiento por tópicos de los correos electrónicos.
 - Incorporación de atributos estáticos en técnicas de _deep learning_.
