@@ -4,9 +4,9 @@ Este es el repositorio del Proyecto de Investigación "Clasificación Automátic
 
 Integrantes:
 - Marcelo Errecalde,
-- Juan Fernandez,
-- Agustín Rodriguez,
+- Juan Manuel Fernandez,
 - Nicolás Cavasín,
+- Agustín Rodriguez,
 - Maximiliano Lulic.
 
 Vigencia: 2020-2022.
