@@ -135,3 +135,4 @@ scripts/JCC/results_test.csv
 scripts/JCC/results_train.csv
 scripts/JCC/results_test_BASE_BOW.csv
 scripts/JCC/results_train_BASE_BOW.csv
+elastic+kibana/correos-procesados.json
