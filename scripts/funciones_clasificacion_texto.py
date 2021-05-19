@@ -67,6 +67,9 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   if tecnica == 'SVM':
     from sklearn.svm import SVC
     model_pipe = Pipeline([(tecnica, SVC())])
+  elif tecnica == 'LR':
+    from sklearn.linear_model import LogisticRegression
+    model_pipe = Pipeline([(tecnica, LogisticRegression())])
   else:
     from xgboost import XGBClassifier
     model_pipe = Pipeline([(tecnica, XGBClassifier())])
