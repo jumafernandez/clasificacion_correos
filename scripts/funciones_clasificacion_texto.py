@@ -70,9 +70,6 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   elif tecnica == 'LR':
     from sklearn.linear_model import LogisticRegression
     model_pipe = Pipeline([(tecnica, LogisticRegression())])
-  elif tecnica == 'SS3':
-    from pyss3 import SS3
-    model_pipe = Pipeline([(tecnica, SS3())])
   else:
     from xgboost import XGBClassifier
     model_pipe = Pipeline([(tecnica, XGBClassifier())])
