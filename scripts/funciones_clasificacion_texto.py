@@ -19,16 +19,20 @@ def representacion_documentos(textos_train, textos_test, estrategia, MAX_TKS):
     vectorizer = CountVectorizer(max_features=MAX_TKS)
 
   # Inicializamos el vectorizer de acuerdo a la estrategia de representación
-if(estrategia=="BOW"):
-  vectorizer = CountVectorizer(token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
-elif(estrategia=="BINARIO"):
-  vectorizer = CountVectorizer(token_pattern = '[\w\/\%]+', max_features=MAX_TKS, binary=True)
-elif(estrategia=="TFIDF"):
-  vectorizer = TfidfVectorizer(token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
- elif(estrategia=="3-4-NGRAM-CHARS"):
-   vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(3,4), token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
- elif(estrategia=="1-2-NGRAM-WORDS"):
-   vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1,2), token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
+  if(estrategia=="BOW"):
+    vectorizer = CountVectorizer(token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
+
+  elif(estrategia=="BINARIO"):
+    vectorizer = CountVectorizer(token_pattern = '[\w\/\%]+', max_features=MAX_TKS, binary=True)
+
+  elif(estrategia=="TFIDF"):
+    vectorizer = TfidfVectorizer(token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
+
+  elif(estrategia=="3-4-NGRAM-CHARS"):
+    vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(3,4), token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
+
+  elif(estrategia=="1-2-NGRAM-WORDS"):
+    vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1,2), token_pattern = '[\w\/\%]+', max_features=MAX_TKS)
 
   # Entrenamos el vectorizer para train y test
   representacion_correos_train = vectorizer.fit_transform(textos_train)
