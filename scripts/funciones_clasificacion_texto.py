@@ -98,9 +98,6 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   recall_test = recall_score(y_test, grid_predictions, average='macro')
   f1_test = f1_score(y_test, grid_predictions, average='macro')
  
-  # Paso el diccionario a dataframe  
-  results_test = pd.DataFrame([dict_grid_test])
-
   if results_save=='drive':
 
     # Genero un diccionario con los parámetro y el acc en test
@@ -111,6 +108,9 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
     dict_grid_test['precision'] = precision_test
     dict_grid_test['recall'] = recall_test
     dict_grid_test['f1_score'] = f1_test
+
+    # Paso el diccionario a dataframe  
+    results_test = pd.DataFrame([dict_grid_test])
 
     # Lo guardo en un csv
     results_test.to_csv('results_test.csv', mode='a')
