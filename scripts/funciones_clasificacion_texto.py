@@ -98,16 +98,16 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   recall_test = recall_score(y_test, grid_predictions, average='macro')
   f1_test = f1_score(y_test, grid_predictions, average='macro')
  
-  if results_save=='drive':
+  # Genero un diccionario con los parámetro y el acc en test
+  dict_grid_test = grid_search.best_params_
+  dict_grid_test['clasificador'] = tecnica
+  dict_grid_test['estrategia'] = estrategia
+  dict_grid_test['accuracy'] = acc_test
+  dict_grid_test['precision'] = precision_test
+  dict_grid_test['recall'] = recall_test
+  dict_grid_test['f1_score'] = f1_test
 
-    # Genero un diccionario con los parámetro y el acc en test
-    dict_grid_test = grid_search.best_params_
-    dict_grid_test['clasificador'] = tecnica
-    dict_grid_test['estrategia'] = estrategia
-    dict_grid_test['accuracy'] = acc_test
-    dict_grid_test['precision'] = precision_test
-    dict_grid_test['recall'] = recall_test
-    dict_grid_test['f1_score'] = f1_test
+  if results_save=='drive':
 
     # Paso el diccionario a dataframe  
     results_test = pd.DataFrame([dict_grid_test])
@@ -126,4 +126,5 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   print('Accuracy Test-Set: {}' . format(acc_test))
   print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
 
+  
   
