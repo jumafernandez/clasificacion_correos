@@ -125,3 +125,5 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   print('Parámetros: {}' . format(grid_search.best_params_))
   print('Accuracy Test-Set: {}' . format(acc_test))
   print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
+
+  
