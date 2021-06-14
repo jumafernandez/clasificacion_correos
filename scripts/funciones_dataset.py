@@ -11,27 +11,23 @@ def get_clases():
   Tomado de notebooks/jcc/de train_test_data.ipynb
   '''
   import numpy as np
-
-  etiquetas_clases = np.array(['Boleto Universitario', 
-                               'Cambio de Carrera', 
-                               'Cambio de Comisión',
-                               'Carga de Notas', 
-                               'Certificados Web', 
-                               'Consulta por Equivalencias',
-                               'Consulta por Legajo', 
-                               'Consulta sobre Título Universitario',
-                               'Cursadas', 
-                               'Datos Personales', 
-                               'Exámenes',
-                               'Ingreso a la Universidad',
-                               'Inscripción a Cursadas',
-                               'Pedido de Certificados',
-                               'Problemas con la Clave',
-                               'Reincorporación', 
-                               'Requisitos de Ingreso',
-                               'Simultaneidad de Carreras', 
-                               'Situación Académica',
-                               'Vacunas Enfermería'])
+     
+  etiquetas_clases = np.array([ 'Boleto Universitario', 
+                                'Cambio de Carrera', 
+                                'Cambio de Comisión',
+                                'Consulta por Equivalencias',
+                                'Consulta por Legajo',
+                                'Consulta sobre Título Universitario',
+                                'Cursadas',
+                                'Datos Personales',
+                                'Exámenes',
+                                'Ingreso a la Universidad',
+                                'Pedido de Certificados',
+                                'Problemas con la Clave',
+                                'Reincorporación',
+                                'Requisitos de Ingreso',
+                                'Simultaneidad de Carreras',
+                                'Situación Académica'])
 
   return etiquetas_clases
 
