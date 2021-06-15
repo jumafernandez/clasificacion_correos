@@ -88,18 +88,20 @@ def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, clas
   df_train = pd.read_csv(file_train)
   df_test = pd.read_csv(file_test)
 
-  # Agrupamiento de clases
-  # Se realiza un conteo de frecuencia por clase y se toman los correos que pertenecen a 
-  # las N-cantidad_clases menos observadas
-  clases = df_train.clase.value_counts()
-  clases_minoritarias = clases.iloc[cantidad_clases-1:].keys().to_list()
+  if (len(df_train[nombre_clase].unique())>cantidad_clases):
+    print(f"\n Existe reducción de clases de {len(df_train[nombre_clase].unique())} clases a {cantidad_clases}.")
+    # Agrupamiento de clases
+    # Se realiza un conteo de frecuencia por clase y se toman los correos que pertenecen a 
+    # las N-cantidad_clases menos observadas
+    clases = df_train.clase.value_counts()
+    clases_minoritarias = clases.iloc[cantidad_clases-1:].keys().to_list()
 
-  # Agrego a las etiquetas la etiqueta "Otras Consultas" para el agrupamiento
-  etiquetas_clases = np.append(class_labels, texto_otras)
+    # Agrego a las etiquetas la etiqueta "Otras Consultas" para el agrupamiento
+    etiquetas_clases = np.append(class_labels, texto_otras)
 
-  # Genero una nueva clave de clases para "Otras Consultas" a modo de agrupar las que poseen menos apariciones
-  df_train.clase[df_train[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
-  df_test.clase[df_test[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
+    # Genero una nueva clave de clases para "Otras Consultas" a modo de agrupar las que poseen menos apariciones
+    df_train.clase[df_train[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
+    df_test.clase[df_test[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
 
   print("\nEl conjunto de entrenamiento tiene la dimensión: " + str(df_train.shape))
   print("El conjunto de testeo tiene la dimensión: " + str(df_test.shape))
