@@ -45,7 +45,7 @@ def representacion_documentos(textos_train, textos_test, estrategia, MAX_TKS):
   return df_representacion_correos_train, df_representacion_correos_test
 
 
-def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, parameters, results_save):
+def gridsearch_por_estrategia_representacion(train, test, atr_consulta='Consulta', atr_clase='clase', estrategia, tecnica, parameters, results_save):
   from funciones_dataset import consolidar_df
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
@@ -55,11 +55,11 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
 
   # Esta función va dentro de un iterador entre las 5 estrategias    
   print('Estrategia de representación: {}' . format(estrategia))
-  correos_train_vec, correos_test_vec = representacion_documentos(train['Consulta'], test['Consulta'], estrategia, None)
+  correos_train_vec, correos_test_vec = representacion_documentos(train[atr_consulta], test[atr_consulta], estrategia, None)
 
   # Separo en x e y - train y test- (además consolido feature estáticas con dinámicas)
-  x_train, y_train = consolidar_df(train, correos_train_vec, 'Consulta', 'clase')
-  x_test, y_test = consolidar_df(test, correos_test_vec, 'Consulta', 'clase')
+  x_train, y_train = consolidar_df(train, correos_train_vec, atr_consulta, atr_clase)
+  x_test, y_test = consolidar_df(test, correos_test_vec, atr_consulta, atr_clase)
   
   # Escalado de datos: Se probó scale y MinMaxScaler y dió mejores resultados el último
   scaler = MinMaxScaler()
