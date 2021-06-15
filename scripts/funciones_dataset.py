@@ -97,16 +97,16 @@ def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, clas
     clases_minoritarias = clases.iloc[cantidad_clases-1:].keys().to_list()
 
     # Agrego a las etiquetas la etiqueta "Otras Consultas" para el agrupamiento
-    etiquetas_clases = np.append(class_labels, texto_otras)
+    class_labels = np.append(class_labels, texto_otras)
 
     # Genero una nueva clave de clases para "Otras Consultas" a modo de agrupar las que poseen menos apariciones
-    df_train.clase[df_train[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
-    df_test.clase[df_test[nombre_clase].isin(clases_minoritarias)] = np.where(etiquetas_clases == texto_otras)[0]
+    df_train.clase[df_train[nombre_clase].isin(clases_minoritarias)] = np.where(class_labels == texto_otras)[0]
+    df_test.clase[df_test[nombre_clase].isin(clases_minoritarias)] = np.where(class_labels == texto_otras)[0]
 
   print("\nEl conjunto de entrenamiento tiene la dimensión: " + str(df_train.shape))
   print("El conjunto de testeo tiene la dimensión: " + str(df_test.shape))
 
-  return df_train, df_test, etiquetas_clases
+  return df_train, df_test, class_labels
 
 
 def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase):
