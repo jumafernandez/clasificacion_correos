@@ -45,7 +45,7 @@ def representacion_documentos(textos_train, textos_test, estrategia, MAX_TKS):
   return df_representacion_correos_train, df_representacion_correos_test
 
 
-def gridsearch_por_estrategia_representacion(train, test, atr_consulta='Consulta', atr_clase='clase', estrategia, tecnica, parameters, results_save):
+def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, parameters, results_save, atr_consulta='Consulta', atr_clase='clase'):
   from funciones_dataset import consolidar_df
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
