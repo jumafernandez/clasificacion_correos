@@ -126,5 +126,5 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   print('Accuracy Test-Set: {}' . format(acc_test))
   print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
 
-  
+  return grid_search
   
