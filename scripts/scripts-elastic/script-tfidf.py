@@ -28,11 +28,13 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
     
     terminos = terminos.strip()
 
-    df_clase = terms2df_tfidf(es, 'correos_jaiio', terminos, 50)
+    df_clase = terms2df_tfidf(es, 'correos_jaiio', terminos, 20)
     df_clase['clase'] = clase
     
     dataset = pd.concat([dataset, df_clase])
 
-dataset.to_csv(DIRECTORIO_TERMINOS+'/dataset-tfidf.csv', index=False)
+DIRECTORIO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
+dataset.to_csv(DIRECTORIO + 'dataset-tfidf.csv', index=False)
+
 
 
