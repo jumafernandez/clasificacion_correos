@@ -1,5 +1,4 @@
-# Cargo las librerÃ­as
-from elasticsearch import Elasticsearch
+# Cargo las librerías
 import pandas as pd
 import numpy as np
 
