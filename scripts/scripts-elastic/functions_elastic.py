@@ -4,20 +4,7 @@
 import pandas as pd
 import numpy as np
 
-def terms2df_tfidf_ss3(conx, index, query_terms, n_results):
-
-    query = {
-          "query": {
-            "match": {
-              "consulta": {
-                "query": query_terms,
-                "operator": "or",
-                 "fuzziness": "AUTO",
-                 "auto_generate_synonyms_phrase_query" : "true"
-              }
-            }
-           }
-          }
+def terms2df(conx, index, query_terms, n_results, query):
 
     response = conx.search(
         index=index,
@@ -41,6 +28,26 @@ def terms2df_tfidf_ss3(conx, index, query_terms, n_results):
     results_df['score'] = pd.Series(score_list)
     
   
+    return results_df
+
+
+def terms2df_tfidf_ss3(conx, index, query_terms, n_results):
+
+    query = {
+          "query": {
+            "match": {
+              "consulta": {
+                "query": query_terms,
+                "operator": "or",
+                 "fuzziness": "AUTO",
+                 "auto_generate_synonyms_phrase_query" : "true"
+              }
+            }
+           }
+          }
+
+    results_df = terms2df(conx, index, query_terms, n_results, query)
+    
     return results_df
 
 def limpiar_clase_ss3(archivo):
