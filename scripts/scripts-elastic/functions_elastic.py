@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 
-def terms2df_tfidf(conx, index, query_terms, n_results):
+def terms2df_tfidf_ss3(conx, index, query_terms, n_results):
 
     query = {
           "query": {
@@ -40,3 +40,14 @@ def terms2df_tfidf(conx, index, query_terms, n_results):
     
   
     return results_df
+
+def limpiar_clase_ss3(archivo):
+    """
+    Esta función recibe el nombre del archivo generado por SS3
+    y limpia el nombre de la clase
+    """
+    # ss3_vocab_Boleto Universitario(words).csv
+    aux = archivo.split('(')[0]
+    clase = aux.split('_')[2]
+    
+    return clase

@@ -1,6 +1,6 @@
 # Cargo la librería con la función propia para la consulta a Elastic
 from elasticsearch import Elasticsearch
-from functions_elastic import terms2df_tfidf
+from functions_elastic import terms2df_tfidf_ss3
 from os import listdir
 import pandas as pd
 
@@ -28,7 +28,7 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
     
     terminos = terminos.strip()
 
-    df_clase = terms2df_tfidf(es, 'correos_jaiio', terminos, 20)
+    df_clase = terms2df_tfidf_ss3(es, 'correos_jaiio', terminos, 20)
     df_clase['clase'] = clase
     
     dataset = pd.concat([dataset, df_clase])
