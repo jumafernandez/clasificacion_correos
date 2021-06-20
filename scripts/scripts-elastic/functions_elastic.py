@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 
-def terms2df(conx, index, query_terms, n_results, query):
+def terms2df(conx, index, n_results, query):
 
     response = conx.search(
         index=index,
@@ -46,9 +46,35 @@ def terms2df_tfidf_ss3(conx, index, query_terms, n_results):
            }
           }
 
-    results_df = terms2df(conx, index, query_terms, n_results, query)
+    results_df = terms2df(conx, index, n_results, query)
     
     return results_df
+
+
+def terms2df_lr(conx, index, query_terms_pos, query_terms_neg, n_results):
+
+    query = {
+      "query": {
+        "boosting": {
+          "positive": {
+            "match": {
+              "consulta": query_terms_pos
+            }
+          },
+          "negative": {
+            "match": {
+              "consulta": query_terms_neg
+            }
+          },
+          "negative_boost": 0.1
+        }
+      }
+    }
+
+    results_df = terms2df(conx, index, n_results, query)
+    
+    return results_df
+
 
 def limpiar_clase_ss3(archivo):
     """
