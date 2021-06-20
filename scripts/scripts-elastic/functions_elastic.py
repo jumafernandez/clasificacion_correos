@@ -1,4 +1,6 @@
-# Cargo las librerías
+# -*- coding: utf-8 -*-
+
+# Cargo las librerias
 import pandas as pd
 import numpy as np
 
@@ -43,7 +45,7 @@ def terms2df_tfidf_ss3(conx, index, query_terms, n_results):
 
 def limpiar_clase_ss3(archivo):
     """
-    Esta función recibe el nombre del archivo generado por SS3
+    Esta funcion recibe el nombre del archivo generado por SS3
     y limpia el nombre de la clase
     """
     # ss3_vocab_Boleto Universitario(words).csv

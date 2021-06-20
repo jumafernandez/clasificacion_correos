@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Cargo la librería con la función propia para la consulta a Elastic
 from elasticsearch import Elasticsearch
 from functions_elastic import terms2df_tfidf_ss3

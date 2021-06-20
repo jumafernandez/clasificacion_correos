@@ -19,9 +19,31 @@ DIRECTORIO_TERMINOS = 'C:/Users/unlu/Desktop/JAIIO50/etiquetado_jaiio/features/t
 # Creamos un dataframe para ir guardando las instancias
 dataset = pd.DataFrame()
 
-print(listdir(DIRECTORIO_TERMINOS))
+for archivo in listdir(DIRECTORIO_TERMINOS):
 
     # Tomo la clase del nombre del archivo
-#    print(archivo)
-#    clase = limpiar_clase_ss3(archivo.split('.csv')[0])
-#    print(clase)
+    clase = limpiar_clase_ss3(archivo.split('.csv')[0])
+
+    # Levanto cada archivo
+    ubicacion_file = DIRECTORIO_TERMINOS + '/' + archivo  
+    file_terms = open(ubicacion_file)
+    
+    # Proceso los términos del archivo
+    terminos = ''
+    cantidad_terminos = 0
+    for linea in file_terms:
+        if cantidad_terminos < 20:
+            terminos += linea.split(',')[0] + ' '
+            cantidad_terminos+=1
+        else:
+            break
+    
+    terminos = terminos.strip()
+
+    df_clase = terms2df_tfidf_ss3(es, 'correos_jaiio', terminos, 50)
+    df_clase['clase'] = clase
+    
+    dataset = pd.concat([dataset, df_clase])
+
+DIRECTORIO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
+dataset.to_csv(DIRECTORIO + 'dataset-ss3.csv', index=False)
