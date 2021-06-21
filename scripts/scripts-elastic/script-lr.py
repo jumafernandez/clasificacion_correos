@@ -38,12 +38,14 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
         idx, termino, score, clase_pos_neg = linea.split(',')
         
         if clase_pos_neg.strip() == 'positivo':
-            terminos_pos += termino + ' '
+            terminos_pos += termino + '^' + str(round(1 + float(score), 2)) + ' '
         elif clase_pos_neg.strip() == 'negativo':
-            terminos_neg += termino + ' '
+            terminos_neg += termino
             
     terminos_pos = terminos_pos.strip()
     terminos_neg = terminos_neg.strip()
+    
+    # print(terminos_pos)
     
     df_clase = terms2df_lr(es, 'correos_jaiio', terminos_pos, terminos_neg, INSTANCIAS)
     df_clase['clase'] = clase
