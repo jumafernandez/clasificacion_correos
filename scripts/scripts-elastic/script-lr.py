@@ -38,6 +38,8 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
         idx, termino, score, clase_pos_neg = linea.split(',')
         
         if clase_pos_neg.strip() == 'positivo':
+            # Boosting de términos
+            # https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
             terminos_pos += termino + '^' + str(round(1 + float(score), 2)) + ' '
         elif clase_pos_neg.strip() == 'negativo':
             terminos_neg += termino
