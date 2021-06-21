@@ -10,7 +10,7 @@ import pandas as pd
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 DIRECTORIO_TERMINOS = 'C:/Users/unlu/Desktop/JAIIO50/etiquetado_jaiio/features/txts_tfidf'
-INSTANCIAS = 100
+INSTANCIAS = 200
 
 # Creamos un dataframe para ir guardando las instancias
 dataset = pd.DataFrame()
@@ -37,7 +37,7 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
     dataset = pd.concat([dataset, df_clase])
 
 DIRECTORIO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
-dataset.to_csv(DIRECTORIO + 'dataset-tfidf.csv', index=False)
+dataset.to_csv(DIRECTORIO + 'dataset-tfidf-' + str(INSTANCIAS) + '.csv', index=False)
 
 
 

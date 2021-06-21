@@ -15,6 +15,7 @@ import pandas as pd
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 DIRECTORIO_TERMINOS = 'C:/Users/unlu/Desktop/JAIIO50/etiquetado_jaiio/features/txts_ss3'
+INSTANCIAS = 200
 
 # Creamos un dataframe para ir guardando las instancias
 dataset = pd.DataFrame()
@@ -40,10 +41,11 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
     
     terminos = terminos.strip()
 
-    df_clase = terms2df_tfidf_ss3(es, 'correos_jaiio', terminos, 50)
+    df_clase = terms2df_tfidf_ss3(es, 'correos_jaiio', terminos, INSTANCIAS)
     df_clase['clase'] = clase
     
     dataset = pd.concat([dataset, df_clase])
 
 DIRECTORIO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
-dataset.to_csv(DIRECTORIO + 'dataset-ss3.csv', index=False)
+dataset.to_csv(DIRECTORIO + 'dataset-ss3-' + str(INSTANCIAS) + '.csv', index=False)
+
