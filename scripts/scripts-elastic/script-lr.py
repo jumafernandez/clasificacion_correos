@@ -17,7 +17,9 @@ import pandas as pd
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 DIRECTORIO_TERMINOS = 'C:/Users/unlu/Desktop/JAIIO50/etiquetado_jaiio/features/txts_lr'
-INSTANCIAS = 200
+DIRECTORIO_DESTINO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
+INSTANCIAS = 40
+BOOSTING = True
 
 # Creamos un dataframe para ir guardando las instancias
 dataset = pd.DataFrame()
@@ -38,9 +40,13 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
         idx, termino, score, clase_pos_neg = linea.split(',')
         
         if clase_pos_neg.strip() == 'positivo':
-            # Boosting de términos
-            # https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
-            terminos_pos += termino + '^' + str(round(1 + float(score), 2)) + ' '
+            if BOOSTING:
+                # Boosting de términos
+                # https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
+                terminos_pos += termino + '^' + str(round(1 + float(score), 2)) + ' '
+            else:
+                terminos_pos += termino + ' '
+
         elif clase_pos_neg.strip() == 'negativo':
             terminos_neg += termino
             
@@ -54,5 +60,13 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
     
     dataset = pd.concat([dataset, df_clase])
 
-DIRECTORIO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
-dataset.to_csv(DIRECTORIO + 'dataset-lr-' + str(INSTANCIAS) + '.csv', index=False)
+# Se formatean las opciones para que aparezcan en el nombre del archivo
+if not(INSTANCIAS):
+    INSTANCIAS = 'ilimitado'
+    
+if BOOSTING:
+    BOOSTING = 'boosting'
+else:
+    BOOSTING = ''
+# Se guarda el csv
+dataset.to_csv(f'{DIRECTORIO_DESTINO}dataset-lr-{INSTANCIAS}-{BOOSTING}.csv', index=False)

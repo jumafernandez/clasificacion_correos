@@ -6,10 +6,15 @@ import numpy as np
 
 def terms2df(conx, index, n_results, query):
 
-    response = conx.search(
+    if n_results:
+        response = conx.search(
         index=index,
         body=query,
         size=n_results)
+    else:
+        response = conx.search(
+        index=index,
+        body=query)       
 
     elastic_docs = response["hits"]["hits"]
     

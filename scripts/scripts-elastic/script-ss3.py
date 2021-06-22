@@ -16,6 +16,7 @@ es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 DIRECTORIO_TERMINOS = 'C:/Users/unlu/Desktop/JAIIO50/etiquetado_jaiio/features/txts_ss3'
 INSTANCIAS = 200
+BOOSTING = True
 
 # Creamos un dataframe para ir guardando las instancias
 dataset = pd.DataFrame()
