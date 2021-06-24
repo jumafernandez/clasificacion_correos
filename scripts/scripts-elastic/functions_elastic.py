@@ -6,15 +6,12 @@ import numpy as np
 
 def terms2df(conx, index, n_results, query):
 
-    if n_results:
-        response = conx.search(
-        index=index,
-        body=query,
-        size=n_results)
-    else:
-        response = conx.search(
-        index=index,
-        body=query)       
+    if not(n_results):
+        n_results = 5000
+
+    response = conx.search(index=index,
+                           body=query,
+                           size=n_results)
 
     elastic_docs = response["hits"]["hits"]
     
@@ -32,7 +29,7 @@ def terms2df(conx, index, n_results, query):
     results_df = pd.DataFrame(fields)
     results_df['score'] = pd.Series(score_list)
     
-  
+    
     return results_df
 
 

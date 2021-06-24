@@ -18,7 +18,7 @@ es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
 DIRECTORIO_TERMINOS = 'C:/Users/unlu/Desktop/JAIIO50/etiquetado_jaiio/features/txts_lr'
 DIRECTORIO_DESTINO = 'C:/Users/unlu/Documents/GitHub/jumafernandez/clasificacion_correos/data/50jaiio/consolidados/feature-extraction/'
-INSTANCIAS = 40
+INSTANCIAS = 200
 BOOSTING = True
 
 # Creamos un dataframe para ir guardando las instancias
@@ -60,13 +60,16 @@ for archivo in listdir(DIRECTORIO_TERMINOS):
     
     dataset = pd.concat([dataset, df_clase])
 
+    # column_names = ['score', 'clase', 'consulta']
+    # dataset = dataset.reindex(columns=column_names)
+
 # Se formatean las opciones para que aparezcan en el nombre del archivo
 if not(INSTANCIAS):
     INSTANCIAS = 'ilimitado'
     
 if BOOSTING:
-    BOOSTING = 'boosting'
+    BOOSTING = '-boosting'
 else:
     BOOSTING = ''
 # Se guarda el csv
-dataset.to_csv(f'{DIRECTORIO_DESTINO}dataset-lr-{INSTANCIAS}-{BOOSTING}.csv', index=False)
+dataset.to_csv(f'{DIRECTORIO_DESTINO}dataset-lr-{INSTANCIAS}{BOOSTING}.csv', index=False)
