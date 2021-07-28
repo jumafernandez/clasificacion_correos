@@ -17,6 +17,8 @@ Vigencia: 2020-2022.
 
 [Publicaciones en Workshops, Congresos y Simposios] ()
 
+<br />
+
 __Potenciales temas para Tesinas de grado (2021):__
 - Estrategias semi-supervisadas de etiquetado de documentos.
 - Impacto del Preprocesamiento y corrección de términos mediante utilización de diccionarios en las técnicas de representación basadas en modelado de lenguaje.
