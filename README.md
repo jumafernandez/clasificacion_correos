@@ -11,6 +11,8 @@ Integrantes:
 
 Vigencia: 2020-2022.
 
+<br />
+
 [Publicaciones en Workshops, Congresos y Simposios](https://github.com/jumafernandez/clasificacion_correos/blob/main/publicaciones.md)
 
 <br />
