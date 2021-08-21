@@ -94,9 +94,9 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
  
   # Calculo las métricas sobre test para el paper
   acc_test = accuracy_score(y_test, grid_predictions)
-  precision_test = precision_score(y_test, grid_predictions, average='macro')
-  recall_test = recall_score(y_test, grid_predictions, average='macro')
-  f1_test = f1_score(y_test, grid_predictions, average='macro')
+  precision_test = precision_score(y_test, grid_predictions, average='weighted')
+  recall_test = recall_score(y_test, grid_predictions, average='weighted')
+  f1_test = f1_score(y_test, grid_predictions, average='weighted')
  
   # Genero un diccionario con los parámetro y el acc en test
   dict_grid_test = grid_search.best_params_
