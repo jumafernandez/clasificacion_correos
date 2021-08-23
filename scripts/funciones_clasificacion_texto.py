@@ -97,7 +97,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   precision_test = precision_score(y_test, grid_predictions, average='weighted')
   recall_test = recall_score(y_test, grid_predictions, average='weighted')
   f1_test = f1_score(y_test, grid_predictions, average='weighted')
-  mcc = matthews_corrcoef(y_test, grid_predictions, average='weighted')
+  mcc = matthews_corrcoef(y_test, grid_predictions)
  
   # Genero un diccionario con la métricas obtenidas en test
   # dict_grid_test = grid_search.best_params_
