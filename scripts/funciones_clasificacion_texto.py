@@ -50,7 +50,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
   from sklearn.preprocessing import MinMaxScaler
-  from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+  from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
   import pandas as pd
 
   # Esta función va dentro de un iterador entre las 5 estrategias    
@@ -97,15 +97,18 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   precision_test = precision_score(y_test, grid_predictions, average='weighted')
   recall_test = recall_score(y_test, grid_predictions, average='weighted')
   f1_test = f1_score(y_test, grid_predictions, average='weighted')
+  mcc = matthews_corrcoef(y_test, grid_predictions, average='weighted')
  
-  # Genero un diccionario con los parámetro y el acc en test
-  dict_grid_test = grid_search.best_params_
+  # Genero un diccionario con la métricas obtenidas en test
+  # dict_grid_test = grid_search.best_params_
+  dict_grid_test = {}
   dict_grid_test['clasificador'] = tecnica
   dict_grid_test['estrategia'] = estrategia
   dict_grid_test['accuracy'] = acc_test
   dict_grid_test['precision'] = precision_test
   dict_grid_test['recall'] = recall_test
   dict_grid_test['f1_score'] = f1_test
+  dict_grid_test['mcc'] = mcc
 
   if results_save=='drive':
 
@@ -126,5 +129,5 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   print('Accuracy Test-Set: {}' . format(acc_test))
   print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
 
-  return grid_search, x_test_scaled, y_test
+  return grid_search, x_test_scaled, y_test, dict_grid_test
   
