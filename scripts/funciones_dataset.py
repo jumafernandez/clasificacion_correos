@@ -139,3 +139,25 @@ def separar_x_y_rna(df, atributo_consulta, atributo_clase):
   y = df[atributo_clase].to_numpy()
 
   return X, y  
+
+def generar_train_test_set(train, test, estrategia, atr_consulta='consulta', atr_clase='clase'):
+  from funciones_dataset import consolidar_df
+  from funciones_clasificacion_texto import representacion_documentos
+  
+  from sklearn.preprocessing import MinMaxScaler
+  import pandas as pd
+
+  # Esta función va dentro de un iterador entre las 5 estrategias    
+  print('Estrategia de representación: {}' . format(estrategia))
+  correos_train_vec, correos_test_vec = representacion_documentos(train[atr_consulta], test[atr_consulta], estrategia, None)
+
+  # Separo en x e y - train y test- (además consolido feature estáticas con dinámicas)
+  x_train, y_train = consolidar_df(train, correos_train_vec, atr_consulta, atr_clase)
+  x_test, y_test = consolidar_df(test, correos_test_vec, atr_consulta, atr_clase)
+  
+  # Escalado de datos: Se probó scale y MinMaxScaler y dió mejores resultados el último
+  scaler = MinMaxScaler()
+  x_train_scaled = scaler.fit_transform(x_train)
+  x_test_scaled = scaler.fit_transform(x_test)
+
+  return x_train_scaled, y_train, x_test_scaled, y_test
