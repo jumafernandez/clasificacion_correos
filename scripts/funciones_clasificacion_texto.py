@@ -132,7 +132,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   return grid_search, x_test_scaled, y_test, dict_grid_test
 
 
-def gridsearch_por_estrategia(X_train, y_train, X_test, y_test, tecnica, parameters):
+def gridsearch_por_tecnica(X_train, y_train, X_test, y_test, tecnica, parameters):
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
   from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
