@@ -132,7 +132,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   return grid_search, x_test_scaled, y_test, dict_grid_test
 
 
-def gridsearch_por_estrategia(X_train, y_train, X_test, y_test, estrategia, tecnica, parameters):
+def gridsearch_por_estrategia(X_train, y_train, X_test, y_test, tecnica, parameters):
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
   from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
@@ -166,8 +166,6 @@ def gridsearch_por_estrategia(X_train, y_train, X_test, y_test, estrategia, tecn
   # Genero un diccionario con la métricas obtenidas en test
   # dict_grid_test = grid_search.best_params_
   dict_grid_test = {}
-  dict_grid_test['clasificador'] = tecnica
-  dict_grid_test['estrategia'] = estrategia
   dict_grid_test['accuracy'] = acc_test
   dict_grid_test['precision'] = precision_test
   dict_grid_test['recall'] = recall_test
@@ -180,4 +178,3 @@ def gridsearch_por_estrategia(X_train, y_train, X_test, y_test, estrategia, tecn
   print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
 
   return grid_search, dict_grid_test
-
