@@ -4,7 +4,7 @@ Este es el repositorio del Proyecto de Iniciación a la Investigación "Clasific
 
 Integrantes:
 - Marcelo Errecalde,
-- Juan Manuel Fernandez,
+- Juan Manuel Fernandez (Director),
 - Nicolás Cavasín,
 - Agustín Rodriguez,
 - Maximiliano Lulic.
