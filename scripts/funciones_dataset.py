@@ -140,7 +140,7 @@ def separar_x_y_rna(df, atributo_consulta, atributo_clase):
 
   return X, y  
 
-def generar_train_test_set(train, test, estrategia, atr_consulta='consulta', atr_clase='clase'):
+def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='consulta', atr_clase='clase'):
   from funciones_dataset import consolidar_df
   from funciones_clasificacion_texto import representacion_documentos
   
@@ -149,7 +149,7 @@ def generar_train_test_set(train, test, estrategia, atr_consulta='consulta', atr
 
   # Esta función va dentro de un iterador entre las 5 estrategias    
   print('Estrategia de representación: {}' . format(estrategia))
-  correos_train_vec, correos_test_vec = representacion_documentos(train[atr_consulta], test[atr_consulta], estrategia, None)
+  correos_train_vec, correos_test_vec = representacion_documentos(train[atr_consulta], test[atr_consulta], estrategia, MAX_TKS)
 
   # Separo en x e y - train y test- (además consolido feature estáticas con dinámicas)
   x_train, y_train = consolidar_df(train, correos_train_vec, atr_consulta, atr_clase)
