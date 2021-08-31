@@ -9,7 +9,7 @@ Integrantes:
 - Agustín Rodriguez,
 - Maximiliano Lulic.
 
-Vigencia: 2020-2022.
+Vigencia: 1/8/2020 al 31/7/2022.
 
 <br />
 
