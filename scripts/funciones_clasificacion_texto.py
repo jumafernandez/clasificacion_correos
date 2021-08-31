@@ -172,7 +172,6 @@ def gridsearch_por_estrategia(X_train, y_train, X_test, y_test, tecnica, paramet
   dict_grid_test['f1_score'] = f1_test
   dict_grid_test['mcc'] = mcc
  
-  print('Estrategia de representación: {}' . format(estrategia))
   print('Parámetros: {}' . format(grid_search.best_params_))
   print('Accuracy Test-Set: {}' . format(acc_test))
   print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
