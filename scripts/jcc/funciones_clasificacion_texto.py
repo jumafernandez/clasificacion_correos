@@ -106,7 +106,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
 
   results_test.to_csv('results_test.csv', mode='a')
  
-  if 'drive':
+  if (results_save=='drive'):
     # Autenticación y guardado en Drive
     import os
     from google.colab import drive
