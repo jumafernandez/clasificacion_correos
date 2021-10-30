@@ -47,7 +47,7 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   from sklearn.pipeline import Pipeline
   from sklearn.model_selection import GridSearchCV
   from sklearn.preprocessing import MinMaxScaler
-  from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+  from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
   import pandas as pd
 
   # Esta función va dentro de un iterador entre las 5 estrategias    
