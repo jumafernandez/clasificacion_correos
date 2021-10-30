@@ -88,25 +88,29 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
  
   # Calculo las métricas sobre test para el paper
   acc_test = accuracy_score(y_test, grid_predictions)
-  precision_test = precision_score(y_test, grid_predictions, average='macro')
-  recall_test = recall_score(y_test, grid_predictions, average='macro')
-  f1_test = f1_score(y_test, grid_predictions, average='macro')
-
-  # Genero un diccionario con los parámetro y el acc en test
-  dict_grid_test = grid_search.best_params_
+  precision_test = precision_score(y_test, grid_predictions, average='weighted')
+  recall_test = recall_score(y_test, grid_predictions, average='weighted')
+  f1_test = f1_score(y_test, grid_predictions, average='weighted')
+  mcc = matthews_corrcoef(y_test, grid_predictions)
+ 
+  # Genero un diccionario con la métricas obtenidas en test
+  # dict_grid_test = grid_search.best_params_
+  dict_grid_test = {}
   dict_grid_test['clasificador'] = tecnica
   dict_grid_test['estrategia'] = estrategia
   dict_grid_test['accuracy'] = acc_test
   dict_grid_test['precision'] = precision_test
   dict_grid_test['recall'] = recall_test
   dict_grid_test['f1_score'] = f1_test
- 
-  # Paso el diccionario a dataframe  
-  results_test = pd.DataFrame([dict_grid_test])
-
-  results_test.to_csv('results_test.csv', mode='a')
+  dict_grid_test['mcc'] = mcc
  
   if (results_save=='drive'):
+ 
+    # Paso el diccionario a dataframe  
+    results_test = pd.DataFrame([dict_grid_test])
+
+    results_test.to_csv('results_test.csv', mode='a')
+
     # Autenticación y guardado en Drive
     import os
     from google.colab import drive
@@ -117,3 +121,5 @@ def gridsearch_por_estrategia_representacion(train, test, estrategia, tecnica, p
   print('Estrategia de representación: {}' . format(estrategia))
   print('Parámetros: {}' . format(grid_search.best_params_))
   print('Accuracy Test-Set: {}' . format(acc_test))
+  print('Métricas sobre Test-Set: {}' . format(dict_grid_test))
+
