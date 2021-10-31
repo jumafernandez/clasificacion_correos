@@ -62,6 +62,7 @@ def cargar_dataset(URL_data, file_train, file_test, descarga, nombre_clase, clas
   df_test = pd.read_csv(file_test)
 
   # Agrupamiento de clases
+  etiquetas_clases = class_labels
   if cantidad_clases<len(class_labels):
     # Se realiza un conteo de frecuencia por clase y se toman los correos que pertenecen a 
     # las N-cantidad_clases menos observadas
