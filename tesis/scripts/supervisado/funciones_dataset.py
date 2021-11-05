@@ -5,6 +5,38 @@ Created on Wed Mar 24 22:46:55 2021
 @author: unlu
 """
 
+def get_clases_pre():
+  '''
+  Esta función retorna las etiquetas de las clases sobre el total de los correos. 
+  Tomado de notebooks/jcc/de train_test_data.ipynb
+  Utilizada antes de unificar clases
+  '''
+  import numpy as np
+
+  etiquetas_clases = np.array(['Boleto Universitario', 
+                               'Cambio de Carrera', 
+                               'Cambio de Comisión',
+                               'Carga de Notas', 
+                               'Certificados Web', 
+                               'Consulta por Equivalencias',
+                               'Consulta por Legajo', 
+                               'Consulta sobre Título Universitario',
+                               'Cursadas', 
+                               'Datos Personales', 
+                               'Exámenes',
+                               'Ingreso a la Universidad',
+                               'Inscripción a Cursadas',
+                               'Pedido de Certificados',
+                               'Problemas con la Clave',
+                               'Reincorporación', 
+                               'Requisitos de Ingreso',
+                               'Simultaneidad de Carreras', 
+                               'Situación Académica',
+                               'Vacunas Enfermería'])
+
+  return etiquetas_clases
+
+
 def get_clases():
   '''
   Esta función retorna las etiquetas de las clases sobre el total de los correos. 
