@@ -158,7 +158,7 @@ def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='
   if atr_estaticos:
     from sklearn.preprocessing import MinMaxScaler
     scaler = MinMaxScaler()
-    x_train_scaled = scaler.fit_transform(x_train)
-    x_test_scaled = scaler.fit_transform(x_test)
+    x_train = scaler.fit_transform(x_train)
+    x_test = scaler.fit_transform(x_test)
 
-  return x_train_scaled, y_train, x_test_scaled, y_test
+  return x_train, y_train, x_test, y_test
