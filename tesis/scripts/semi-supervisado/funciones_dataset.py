@@ -144,6 +144,7 @@ def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='
   from funciones_dataset import consolidar_df
   from funciones_clasificacion_texto import representacion_documentos
   import pandas as pd
+  from sklearn.preprocessing import MinMaxScaler
 
   # Esta función va dentro de un iterador entre las 5 estrategias    
   print('Estrategia de representación: {}' . format(estrategia))
@@ -155,7 +156,6 @@ def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='
   
   # Escalado de datos: Se probó scale y MinMaxScaler y dió mejores resultados el último
   if atr_estaticos:
-    from sklearn.preprocessing import MinMaxScaler
     scaler = MinMaxScaler()
     x_train_scaled = scaler.fit_transform(x_train)
     x_test_scaled = scaler.fit_transform(x_test)
