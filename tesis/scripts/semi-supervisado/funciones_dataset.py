@@ -62,7 +62,7 @@ def get_clases_pre():
 
   return etiquetas_clases
 
-def cargar_dataset(URL_data_train, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras, URL_data_test=URL_data_train):
+def cargar_dataset(URL_data_train, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras, URL_data_test=False):
   '''
   Carga los train y test set y genera la reducción de clases, en caso que sea necesario
   '''
@@ -71,6 +71,10 @@ def cargar_dataset(URL_data_train, file_train, file_test, descarga, nombre_clase
   import warnings
   warnings.filterwarnings("ignore")
 
+  # Sino se pasa el parámetro, se asume que train y test están en el mismo directorio
+  if not(URL_data_test):
+    URL_data_test = URL_data_train
+    
   # Genero el enlace completo
   URL_file_train = URL_data_train + file_train
   URL_file_test = URL_data_test + file_test
