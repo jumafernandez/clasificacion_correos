@@ -62,7 +62,7 @@ def get_clases_pre():
 
   return etiquetas_clases
 
-def cargar_dataset(URL_data_train, URL_data_test=URL_data_train, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras):
+def cargar_dataset(URL_data_train, file_train, file_test, descarga, nombre_clase, class_labels, cantidad_clases, texto_otras, URL_data_test=URL_data_train):
   '''
   Carga los train y test set y genera la reducción de clases, en caso que sea necesario
   '''
