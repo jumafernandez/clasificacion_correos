@@ -113,7 +113,7 @@ def cargar_dataset(URL_data_train, file_train, file_test, descarga, nombre_clase
   return df_train, df_test, class_labels
 
 
-def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase):
+def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase, atributos_a_eliminar):
   '''
   Función para unir features dinámicas a las estáticas y separar en x e y
   '''
@@ -123,6 +123,9 @@ def consolidar_df(df, features_dinamicas_vec, atributo_consulta, atributo_clase)
   y = df[atributo_clase].to_numpy()
   x = pd.concat([df.drop([atributo_consulta, atributo_clase], axis=1), features_dinamicas_vec], axis=1)
   
+  if len(atributos_a_eliminar)>0:
+    x.drop(columns=atributos_a_eliminar, inplace=True)
+    
   return x, y
 
   
@@ -144,9 +147,10 @@ def separar_x_y_rna(df, atributo_consulta, atributo_clase):
 
   return X, y  
 
-def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='consulta', atr_clase='clase', atr_estaticos=True):
+def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='consulta', atr_clase='clase', atributos_a_eliminar=[]):
   from funciones_dataset import consolidar_df
   from funciones_clasificacion_texto import representacion_documentos
+  from sklearn.preprocessing import MinMaxScaler
   import pandas as pd
   from sklearn.preprocessing import MinMaxScaler
 
@@ -155,14 +159,12 @@ def generar_train_test_set(train, test, estrategia, MAX_TKS=None, atr_consulta='
   correos_train_vec, correos_test_vec = representacion_documentos(train[atr_consulta], test[atr_consulta], estrategia, MAX_TKS)
 
   # Separo en x e y - train y test- (además consolido feature estáticas con dinámicas)
-  x_train, y_train = consolidar_df(train, correos_train_vec, atr_consulta, atr_clase)
-  x_test, y_test = consolidar_df(test, correos_test_vec, atr_consulta, atr_clase)
+  x_train, y_train = consolidar_df(train, correos_train_vec, atr_consulta, atr_clase, atributos_a_eliminar)
+  x_test, y_test = consolidar_df(test, correos_test_vec, atr_consulta, atr_clase, atributos_a_eliminar)
   
   # Escalado de datos: Se probó scale y MinMaxScaler y dió mejores resultados el último
-  if atr_estaticos:
-    from sklearn.preprocessing import MinMaxScaler
-    scaler = MinMaxScaler()
-    x_train = scaler.fit_transform(x_train)
-    x_test = scaler.fit_transform(x_test)
+  scaler = MinMaxScaler()
+  x_train = scaler.fit_transform(x_train)
+  x_test = scaler.fit_transform(x_test)
 
   return x_train, y_train, x_test, y_test
