@@ -11,7 +11,7 @@ __Cita BibTeX:__  <br />
   pages={75--90}, <br />
   year={2022}, <br />
   organization={Springer} <br />
-}
+} <br />
 __Video de la Presentación:__ [YouTube](https://www.youtube.com/watch?v=EuPzx6rimRA)  <br />
 
 ### 9th Conference on Cloud Computing, Big Data & Emerging Topics
