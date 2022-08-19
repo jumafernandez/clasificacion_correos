@@ -1,5 +1,19 @@
 # Publicaciones en Congresos, Workshops y Simposios
 
+### 10th Conference on Cloud Computing, Big Data & Emerging Topics
+__Título:__ Multi-class E-mail Classification with a Semi-Supervised Approach Based on Automatic Feature Selection and Information Retrieval <br />
+__Enlace al paper:__ [Aquí](https://link.springer.com/chapter/10.1007/978-3-031-14599-5_6)  <br />
+__Cita BibTeX:__  <br />
+@inproceedings{fernandez2022multi, <br />
+  title={Multi-class E-mail Classification with a Semi-Supervised Approach Based on Automatic Feature Selection and Information Retrieval}, <br />
+  author={Fern{\'a}ndez, Juan Manuel and Errecalde, Marcelo}, <br />
+  booktitle={Conference on Cloud Computing, Big Data \& Emerging Topics}, <br />
+  pages={75--90}, <br />
+  year={2022}, <br />
+  organization={Springer} <br />
+}
+__Video de la Presentación:__ [YouTube](https://www.youtube.com/watch?v=EuPzx6rimRA)  <br />
+
 ### 9th Conference on Cloud Computing, Big Data & Emerging Topics
 __Título:__ Classic and recent (neural) approaches to automatic text classification: a comparative study with e-mails in the Spanish language <br />
 __Enlace al paper:__ [Aquí](http://sedici.unlp.edu.ar/bitstream/handle/10915/121564/Documento_completo.pdf?sequence=1#page=28)  <br />
