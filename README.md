@@ -21,7 +21,7 @@ Vigencia: 1/8/2020 al 31/7/2022.
 
 <br />
 
-__Potenciales temas para Tesinas de grado (2021):__
+__Potenciales temas para Tesinas de grado (2022):__
 - Estrategias semi-supervisadas de etiquetado de documentos.
 - Impacto del Preprocesamiento y corrección de términos mediante utilización de diccionarios en las técnicas de representación basadas en modelado de lenguaje.
 - _Question-Answering_ de correos electrónicos utilizando mecanismos basados en atención (BERT) __\[Matías Rolón (en curso)\]__.
