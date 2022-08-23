@@ -5,7 +5,7 @@ Created on Wed Jul 14 12:10:56 2021
 @author: Juan Manuel Fernandez
 """
 import time
-from funciones_IEEE import cargar_dataset, get_metricas, get_BoW
+from funciones_JCC import cargar_dataset, get_metricas, get_BoW
 from funciones_preprocesamiento import preprocesar_correos
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
