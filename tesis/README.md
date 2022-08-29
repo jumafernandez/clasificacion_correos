@@ -1,6 +1,6 @@
 # Repositorio de recursos de la Tesis de Maestría en Inteligencia de datos orientada en Big Data (UNLP)
 
-Este es el repositorio donde se alojan los recursos (datos, notebooks, scripts, anotaciones, entre otros) de la Tesis para acceder al Título de Magister en Inteligencia de datos orientada en Big Data de la Universidad Nacional de La Plata.
+Este es el repositorio donde se alojan los recursos (datos, notebooks, scripts, anotaciones, entre otros) de la Tesis para acceder al Título de Magister en Inteligencia de datos con orientación en Big Data de la Universidad Nacional de La Plata.
 
 El tesista es Lic. Juan Manuel Fernandez, la investigación se titula _"Clasificación Automática de correos electrónicos"_ y está dirigida por el Dr. Marcelo Errecalde y co-dirigida por el Mg. Mario Oloriz.
 
