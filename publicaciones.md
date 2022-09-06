@@ -1,5 +1,16 @@
 # Publicaciones en Congresos, Workshops y Simposios
 
+### XXVIII Congreso Argentino de Ciencias de la Computación
+__Título:__  Instance retrieval from non-labeled data as a strategy for automatic classification of imbalanced e-mail datasets <br />
+__Enlace al paper:__ Pendiente de publicación (Congreso a realizarse en Octubre 2022) <br />
+__Cita BibTeX:__  <br />
+@inproceedings{fernandez2022instance,
+  title={Instance retrieval from non-labeled data as a strategy for automatic classification of imbalanced e-mail datasets}, <br />
+  author={Fern{\'a}ndez, Juan Manuel and Errecalde, Marcelo}, <br />
+  booktitle={XXVIII Congreso Argentino de Ciencias de la Computaci{\'o}n}, <br />
+  year={2022} <br />
+} <br />
+
 ### 10th Conference on Cloud Computing, Big Data & Emerging Topics
 __Título:__ Multi-class E-mail Classification with a Semi-Supervised Approach Based on Automatic Feature Selection and Information Retrieval <br />
 __Enlace al paper:__ [Aquí](https://link.springer.com/chapter/10.1007/978-3-031-14599-5_6)  <br />
