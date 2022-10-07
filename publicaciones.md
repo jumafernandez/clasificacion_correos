@@ -10,6 +10,8 @@ __Cita BibTeX:__  <br />
   booktitle={XXVIII Congreso Argentino de Ciencias de la Computaci{\'o}n}, <br />
   year={2022} <br />
 } <br />
+__Presentación:__ [Español](https://docs.google.com/presentation/d/1gqyPNiv6lezkQbaLhBUpaNE6MmalZ9XNr0yHKcG_WMY/edit?usp=sharing) | [Inglés](https://docs.google.com/presentation/d/1CeCG5G49qgxCC-JHyEcFWXdGEFQV_VVvV3twuU1EKdI/edit?usp=sharing) <br />
+
 
 ### 10th Conference on Cloud Computing, Big Data & Emerging Topics
 __Título:__ Multi-class E-mail Classification with a Semi-Supervised Approach Based on Automatic Feature Selection and Information Retrieval <br />
